@@ -53,7 +53,7 @@ function Form() {
           id="search"
           onClick={Search}
         >
-          Search 🔍
+          Search 🔎
         </button>
         <button className="btn btn-danger" id="clear" onClick={Clear}>
           Clear
