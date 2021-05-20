@@ -4,7 +4,7 @@ function Form() {
     event.preventDefault();
     let results = document.getElementById("results");
     let query = document.getElementById("query").value.trim();
-    let api = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=10&srsearch=${query}`;
+    let api = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=5&srsearch=${query}`;
     fetch(api)
       .then((response) => {
         return response.json();
@@ -30,6 +30,11 @@ function Form() {
         });
       });
   }
+  function Clear(event) {
+    event.preventDefault();
+    document.getElementById("results").style.display = "none";
+    document.getElementById("query").value = "";
+  }
   return (
     <div className="container my-4">
       <form id="form" className="mb-4">
@@ -44,11 +49,14 @@ function Form() {
         </div>
         <button
           type="submit"
-          className="btn btn-primary"
+          className="btn btn-success mb-3 d-block"
           id="search"
           onClick={Search}
         >
-          Search
+          Search 🔍
+        </button>
+        <button className="btn btn-danger" id="clear" onClick={Clear}>
+          Clear
         </button>
       </form>
       <div id="results"></div>
